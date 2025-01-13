@@ -28,12 +28,19 @@ const Todo = () => {
           isChecked: false,
         };
 
+        // add newTask to taskList
         setTaskList((prev) => [...prev, newTask]);
 
         // Clear input after adding the task
         inputRef.current.value = "";
       }
     }
+  };
+
+  // Function delete task
+  const deleteTask = (id: number): void => {
+    const newTaskList = taskList.filter((task) => task.id != id);
+    setTaskList(newTaskList);
   };
 
   return (
@@ -64,7 +71,7 @@ const Todo = () => {
       {/* ---------- Task list ---------- */}
       <div className="flex flex-col py-3 gap-1">
         {taskList.map((task) => (
-          <TodoItem key={task.id} id={task.id} task={task.task} isChecked={task.isChecked} />
+          <TodoItem key={task.id} id={task.id} task={task.task} isChecked={task.isChecked} onDelete={deleteTask} />
         ))}
       </div>
     </div>
