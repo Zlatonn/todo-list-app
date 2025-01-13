@@ -34,12 +34,21 @@ const Todo = () => {
         // Clear input after adding the task
         inputRef.current.value = "";
       }
+      // }
     }
   };
 
   // Function delete task
   const deleteTask = (id: number): void => {
     const newTaskList = taskList.filter((task) => task.id != id);
+    setTaskList(newTaskList);
+  };
+
+  // Function toggle task
+  const toggleTask = (id: number): void => {
+    const newTaskList = taskList.map((task) => {
+      return task.id == id ? { ...task, isChecked: !task.isChecked } : task;
+    });
     setTaskList(newTaskList);
   };
 
@@ -56,12 +65,12 @@ const Todo = () => {
         <input
           ref={inputRef}
           type="text"
-          placeholder="Add you task"
+          placeholder="Add you task..."
           className=" bg-transparent border-0 outline-0 flex-1 h-14 pl-6 pr-2 placeholder:text-slate-600"
         />
         <button
           onClick={addTask}
-          className="border-0 rounded-full bg-orange-600 w-32 h-14
+          className="border-0 rounded-full bg-orange-600 hover:bg-orange-800 duration-300 w-32 h-14
          text-white text-lg font-medium cursor-pointer"
         >
           ADD +
@@ -71,7 +80,7 @@ const Todo = () => {
       {/* ---------- Task list ---------- */}
       <div className="flex flex-col py-3 gap-1">
         {taskList.map((task) => (
-          <TodoItem key={task.id} id={task.id} task={task.task} isChecked={task.isChecked} onDelete={deleteTask} />
+          <TodoItem key={task.id} id={task.id} task={task.task} isChecked={task.isChecked} onDelete={deleteTask} onToggle={toggleTask} />
         ))}
       </div>
     </div>
