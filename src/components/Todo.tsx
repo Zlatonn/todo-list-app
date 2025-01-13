@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import todo_icon from "../assets/todo_icon.png";
 import TodoItem from "./TodoItem";
 
@@ -11,7 +11,10 @@ const Todo = () => {
   }
 
   // Create local state
-  const [taskList, setTaskList] = useState<ITask[]>([]);
+  const [taskList, setTaskList] = useState<ITask[]>(() => {
+    const initialTask = window.localStorage.getItem("taskList");
+    return initialTask ? (JSON.parse(initialTask) as ITask[]) : [];
+  });
 
   // Referent task box
   const inputRef = useRef<HTMLInputElement>(null);
@@ -51,6 +54,11 @@ const Todo = () => {
     });
     setTaskList(newTaskList);
   };
+
+  // update taskList to local storage when taskList changed
+  useEffect((): void => {
+    window.localStorage.setItem("taskList", JSON.stringify(taskList));
+  }, [taskList]);
 
   return (
     <div className="w-11/12 max-w-lg mx-auto min-h-[550px] flex flex-col gap-3 bg-white p-5 rounded-xl ">
