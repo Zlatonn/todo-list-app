@@ -1,4 +1,5 @@
 import todo_icon from "../assets/todo_icon.png";
+import TodoItem from "./TodoItem";
 
 const Todo = () => {
   return (
@@ -27,7 +28,22 @@ const Todo = () => {
       <hr />
 
       {/* ---------- Task list ---------- */}
-      <div></div>
+      <div className="flex flex-col py-3 gap-1">
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+      </div>
     </div>
   );
 };
