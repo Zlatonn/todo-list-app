@@ -32,7 +32,7 @@ const TodoItem = ({ id, task, isChecked, onDelete, onToggle }: ITodoItemProps) =
         <p className={`${isChecked ? "line-through" : ""} `}>{task}</p>
       </div>
       <button onClick={() => handleDelete(id)}>
-        <img src={deleteBtn} alt="deleteBtn" className="w-4 h-4 duration-200  hover:scale-150 hover:cursor-pointer" />
+        <img src={deleteBtn} alt="deleteBtn" className="w-4 h-4 hover:cursor-pointer" />
       </button>
     </div>
   );
